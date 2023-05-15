@@ -16,7 +16,7 @@ namespace ariel {
 
         void print();
 
-        Point moveTowards(Point source,Point dest,double distance);
+        static Point moveTowards(Point source,Point dest,double distance);
     };
 }
 

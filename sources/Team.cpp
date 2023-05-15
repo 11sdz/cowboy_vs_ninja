@@ -5,4 +5,9 @@
 #include "Team.hpp"
 
 namespace ariel {
+    Team::~Team() {
+
+    }
+
+    Team::Team(Character *leader) : _leader(leader) {}
 } // ariel

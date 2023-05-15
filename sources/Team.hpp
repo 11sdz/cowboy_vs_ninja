@@ -11,8 +11,24 @@ namespace ariel {
 
     class Team {
     private:
-        int size=10;
+        int _maxTeamSize=10;
         vector<Character> _members;
+        Character *_leader;
+
+    public:
+
+        explicit Team(Character *leader);
+
+        void add(Character *fighter);
+
+        void attack(Team *opponent);
+
+        int stillAlive();
+
+        virtual void print();
+
+        virtual ~Team();
+
     };
 
 } // ariel
