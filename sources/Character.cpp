@@ -11,4 +11,8 @@ namespace ariel {
     Character::~Character() {
 
     }
+
+    int Character::getHp() const {
+        return _hp;
+    }
 } // ariel

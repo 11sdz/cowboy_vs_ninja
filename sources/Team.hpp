@@ -21,7 +21,7 @@ namespace ariel {
 
     class Team {
     private:
-        int _maxTeamSize=10;
+        const int _maxTeamSize=10;
         vector<Character> _members;
         Character *_leader;
 

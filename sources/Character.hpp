@@ -15,16 +15,17 @@ namespace ariel {
         int _hp;
         Point _location;
         string _name;
+        void hit(int damage);
 
     public:
 
         Character( const string &name, int hp, const Point &location);
 
+        int getHp() const;
+
         bool isAlive();
 
         double distance(Character *other);
-
-        void hit(int damage);
 
         string getName();
 
