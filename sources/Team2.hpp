@@ -5,11 +5,11 @@
 #ifndef COWBOY_VS_NINJA_TEAM2_HPP
 #define COWBOY_VS_NINJA_TEAM2_HPP
 
-#define Team
-
+#include "Team.hpp"
 namespace ariel {
 
     class Team2 :public Team{
+
 
     };
 

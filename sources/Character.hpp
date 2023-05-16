@@ -11,7 +11,7 @@ using namespace std;
 namespace ariel {
 
     class Character {
-    private:
+    protected:
         int _hp;
         Point _location;
         string _name;
@@ -30,8 +30,9 @@ namespace ariel {
 
         Point getLocation();
 
-        virtual void print();
+        virtual string print()=0;
 
+        virtual ~Character();
 
 
     };

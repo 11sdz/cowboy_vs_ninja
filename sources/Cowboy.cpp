@@ -22,5 +22,8 @@ namespace ariel{
 
     }
 
+    string Cowboy::print() {
+        return std::string();
+    }
 
 }

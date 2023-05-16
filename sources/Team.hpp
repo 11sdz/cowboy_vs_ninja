@@ -4,9 +4,19 @@
 
 #ifndef COWBOY_VS_NINJA_TEAM_HPP
 #define COWBOY_VS_NINJA_TEAM_HPP
+
 #include "Character.hpp"
+#include "OldNinja.hpp"
+#include "YoungNinja.hpp"
+#include "TrainedNinja.hpp"
+#include "Cowboy.hpp"
 #include "Point.hpp"
+#include "Team2.hpp"
+#include "SmartTeam.hpp"
+
 #include <vector>
+
+
 namespace ariel {
 
     class Team {

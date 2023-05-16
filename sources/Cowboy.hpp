@@ -5,6 +5,7 @@
 #ifndef COWBOY_VS_NINJA_COWBOY_HPP
 #define COWBOY_VS_NINJA_COWBOY_HPP
 
+#include <ostream>
 #include "Character.hpp"
 
 namespace ariel {
@@ -22,6 +23,8 @@ namespace ariel {
         bool hasboolets();
 
         void reload();
+
+        string print() override;
 
 
     };

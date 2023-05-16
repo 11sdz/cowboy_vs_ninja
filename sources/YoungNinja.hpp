@@ -11,6 +11,10 @@ namespace ariel {
     class YoungNinja : public Ninja{
     public:
         YoungNinja(const string &name, const Point &location);
+
+        string print() override;
+
+        ~YoungNinja() override;
     };
 
 } // ariel

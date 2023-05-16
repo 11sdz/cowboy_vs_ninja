@@ -7,5 +7,10 @@
 namespace ariel {
 
     YoungNinja::YoungNinja( const string &name, const Point &location) : Ninja(name, 100, location,
-                                                                                                     14) {}
+                                                                                                     14) {
+    }
+
+    string YoungNinja::print() {
+
+    }
 } // ariel
