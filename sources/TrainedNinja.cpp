@@ -9,6 +9,6 @@ namespace ariel{
                                                                                                      12) {}
 
     string TrainedNinja::print() {
-
+        return string("hey");
     }
 }

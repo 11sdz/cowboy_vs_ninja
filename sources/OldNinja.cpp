@@ -9,6 +9,6 @@ namespace ariel {
                                                                                              8) {}
 
     string OldNinja::print() {
-
+        return string("hey");
     }
 } // ariel

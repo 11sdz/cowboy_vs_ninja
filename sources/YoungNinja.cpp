@@ -11,6 +11,6 @@ namespace ariel {
     }
 
     string YoungNinja::print() {
-
+        return string("hey");
     }
 } // ariel
