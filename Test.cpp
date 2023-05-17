@@ -158,6 +158,10 @@ TEST_SUITE("Characters"){
         CHECK_EQ(baby.getLocation(), Point(5,0));
 
         //Action
+        CHECK_THROWS_AS(pro.slash(&pro),invalid_argument);
+        CHECK_THROWS_AS(baby.slash(&baby),invalid_argument);
+        CHECK_THROWS_AS(master.slash(&master),invalid_argument);
+
         pro.slash(&master);
         CHECK_EQ(master.getHp(),150);
 
@@ -304,5 +308,8 @@ TEST_SUITE("Teams"){
         CHECK_EQ(cowboy.getHp(),0);
         CHECK_FALSE(cowboy.isAlive());
         CHECK_EQ(team.getLeader()->getName(),cowboy1.getName());
+
+        CHECK_THROWS_AS(team2.attack(&team2),invalid_argument);
+
     }
 }
