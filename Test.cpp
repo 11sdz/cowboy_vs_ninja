@@ -3,6 +3,7 @@
 //
 #include "doctest.h"
 #include "sources/Team.hpp"
+#include "sources/Team2.hpp"
 
 using namespace ariel;
 using namespace std;
@@ -234,10 +235,74 @@ TEST_SUITE("Characters"){
 }
 
 TEST_SUITE("Teams"){
-    TEST_CASE("Team and Team2 initialization"){
+    TEST_CASE("Team and Team2"){
+        Cowboy cboy("Billy",Point(0,0));
+        Team teamA(&cboy);
+        CHECK_EQ(teamA.stillAlive(),1);
+        OldNinja oldNinja("Master", Point(11,11));
+        Team2 teamB(&oldNinja);
+        CHECK_EQ(teamB.stillAlive(),1);
 
+        while(((teamA.stillAlive()!=10) && (teamB.stillAlive()!=10))){
+            Cowboy cb(to_string(teamA.stillAlive()), Point(teamA.stillAlive(),teamA.stillAlive()));
+            OldNinja on(to_string(teamB.stillAlive()+11), Point(teamB.stillAlive()+11,teamB.stillAlive()+11));
+            teamA.add(&cb);
+            teamB.add(&on);
+        }
+        CHECK_EQ(teamB.stillAlive(),10);
+        CHECK_EQ(teamA.stillAlive(),10);
+
+        CHECK_THROWS_AS(teamA.add(new Cowboy("Jokic", Point(22,22))),runtime_error);
+        CHECK_THROWS_AS(teamB.add(new Cowboy("LeBron", Point(23,23))),runtime_error);
+
+        while(teamA.stillAlive() && teamB.stillAlive()){
+            teamA.attack(&teamB);
+            if(teamB.stillAlive()) {
+                teamB.attack(&teamA);
+            }
+        }
+        if(teamA.stillAlive()){
+            CHECK_GT(teamA.stillAlive(),0);
+            CHECK_EQ(teamB.stillAlive(),0);
+            teamB.add(new YoungNinja("Curry", Point(-1,-1)));
+            CHECK_EQ(teamB.stillAlive(),1);
+        }else{
+            CHECK_GT(teamB.stillAlive(),0);
+            CHECK_EQ(teamA.stillAlive(),0);
+            teamA.add(new YoungNinja("Curry", Point(-1,-1)));
+            CHECK_EQ(teamA.stillAlive(),1);
+        }
     }
-    TEST_CASE("Team2"){
+    TEST_CASE("Team attacks"){
+        Cowboy cowboy("Joker", Point(0,0));
+        Cowboy cowboy1("AD", Point(1,0));
+        OldNinja oldNinja("Shaq", Point(0,10));
+        YoungNinja youngNinja("Wemby", Point(0,5));
 
+        Team team(&cowboy);
+        team.add(&cowboy1);
+        Team2 team2(&oldNinja);
+        team2.add(&youngNinja);
+
+        CHECK_EQ(team2.stillAlive(),2);
+        team.attack(&team2);
+        team.attack(&team2);
+        team.attack(&team2);
+        team.attack(&team2);
+        team.attack(&team2);
+        CHECK_EQ(team2.stillAlive(),1);
+        CHECK_FALSE(youngNinja.isAlive());
+        CHECK(oldNinja.isAlive());
+
+        team2.attack(&team);
+        CHECK_EQ(cowboy.getHp(),110);
+        team2.attack(&team);
+        CHECK_EQ(cowboy.getHp(),70);
+        team2.attack(&team);
+        CHECK_EQ(cowboy.getHp(),30);
+        team2.attack(&team);
+        CHECK_EQ(cowboy.getHp(),0);
+        CHECK_FALSE(cowboy.isAlive());
+        CHECK_EQ(team.getLeader()->getName(),cowboy1.getName());
     }
 }

@@ -11,31 +11,29 @@
 #include "TrainedNinja.hpp"
 #include "Cowboy.hpp"
 #include "Point.hpp"
-#include "Team2.hpp"
-#include "SmartTeam.hpp"
 
 #include <vector>
 
 
 namespace ariel {
-
-    class Team {
-    private:
+    class Team{
+    protected:
         const int _maxTeamSize=10;
         vector<Character> _members;
         Character *_leader;
-
+        virtual void setLeader(Character *leader);
     public:
+        Team(Character *leader);
 
-        explicit Team(Character *leader);
+        Character *getLeader() const;
 
-        void add(Character *fighter);
+        virtual void add(Character *fighter);
 
-        void attack(Team *opponent);
-
-        int stillAlive();
+        virtual void attack(Team *opponent);
 
         virtual void print();
+
+        int stillAlive();
 
         virtual ~Team();
 

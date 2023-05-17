@@ -11,14 +11,30 @@ namespace ariel {
 
     }
 
-
-
-    Team::~Team() {
-    }
+    void add(Character *fighter);
 
     int Team::stillAlive() {
         return 0;
     }
 
 
+    void Team::attack(Team *opponent) {
+
+    }
+
+    void Team::print() {
+
+    }
+
+    Team::~Team() {
+
+    }
+
+    Character *Team::getLeader() const {
+        return _leader;
+    }
+
+    void Team::setLeader(Character *leader) {
+        _leader = leader;
+    }
 } // ariel

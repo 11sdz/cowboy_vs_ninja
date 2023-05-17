@@ -9,10 +9,18 @@
 namespace ariel {
 
     class Team2 :public Team{
+    public:
+        Team2(Character *leader);
 
+        void attack(Team *opponent) override;
+
+        void add(Character *fighter) override;
+
+        void print() override;
+
+        virtual ~Team2();
 
     };
-
 } // ariel
 
 #endif //COWBOY_VS_NINJA_TEAM2_HPP
