@@ -10,20 +10,21 @@ namespace ariel {
 
     }
 
-    void add(Character *fighter){
+    void SmartTeam::add(Character *fighter){
 
     }
 
-    void Team::attack(Team *opponent) {
+    void SmartTeam::attack(Team *opponent) {
 
     }
 
-    void Team::print() {
+    void SmartTeam::print() {
 
     }
 
-    Team::~Team() {
+    void SmartTeam::setLeader(Character* leader){
 
     }
+
 
 } // ariel

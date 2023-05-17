@@ -6,6 +6,7 @@
 #define COWBOY_VS_NINJA_NINJA_HPP
 
 #include "Character.hpp"
+
 namespace ariel {
     class Ninja : public Character{
     protected:
@@ -17,6 +18,8 @@ namespace ariel {
         void move(Character *enemy);
 
         void slash(Character *enemy);
+
+        ~Ninja() override;
 
     };
 }

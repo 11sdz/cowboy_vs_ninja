@@ -246,12 +246,13 @@ TEST_SUITE("Teams"){
         OldNinja oldNinja("Master", Point(11,11));
         Team2 teamB(&oldNinja);
         CHECK_EQ(teamB.stillAlive(),1);
-
-        while(((teamA.stillAlive()!=10) && (teamB.stillAlive()!=10))){
+        int size=1;
+        while(size<10){
             Cowboy cb(to_string(teamA.stillAlive()), Point(teamA.stillAlive(),teamA.stillAlive()));
             OldNinja on(to_string(teamB.stillAlive()+11), Point(teamB.stillAlive()+11,teamB.stillAlive()+11));
             teamA.add(&cb);
             teamB.add(&on);
+            size++;
         }
         CHECK_EQ(teamB.stillAlive(),10);
         CHECK_EQ(teamA.stillAlive(),10);
@@ -259,7 +260,7 @@ TEST_SUITE("Teams"){
         CHECK_THROWS_AS(teamA.add(new Cowboy("Jokic", Point(22,22))),runtime_error);
         CHECK_THROWS_AS(teamB.add(new Cowboy("LeBron", Point(23,23))),runtime_error);
 
-        while(teamA.stillAlive() && teamB.stillAlive()){
+        while(teamA.getLeader()->isAlive() && teamB.getLeader()->isAlive()){
             teamA.attack(&teamB);
             if(teamB.stillAlive()) {
                 teamB.attack(&teamA);

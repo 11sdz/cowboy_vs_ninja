@@ -13,7 +13,7 @@ namespace ariel {
 
     }
 
-    void add(Character *fighter){
+    void Team2::add(Character *fighter){
 
     }
 
@@ -21,8 +21,8 @@ namespace ariel {
 
     }
 
-    Team2::~Team2() {
-
+    void Team2::setLeader(Character* leader){
+        
     }
 
 } // ariel

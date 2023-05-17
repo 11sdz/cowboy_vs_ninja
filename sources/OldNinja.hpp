@@ -6,6 +6,7 @@
 #define COWBOY_VS_NINJA_OLDNINJA_HPP
 
 #include "Ninja.hpp"
+
 namespace ariel {
 
     class OldNinja : public Ninja{

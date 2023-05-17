@@ -11,7 +11,9 @@ namespace ariel {
 
     }
 
-    void add(Character *fighter);
+    void Team::add(Character *fighter){
+
+    }
 
     int Team::stillAlive() {
         return 0;
@@ -26,11 +28,7 @@ namespace ariel {
 
     }
 
-    Team::~Team() {
-
-    }
-
-    Character *Team::getLeader() const {
+    Character * Team::getLeader() const {
         return _leader;
     }
 

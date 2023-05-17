@@ -14,7 +14,6 @@ namespace ariel {
 
         string print() override;
 
-        ~YoungNinja() override;
     };
 
 } // ariel

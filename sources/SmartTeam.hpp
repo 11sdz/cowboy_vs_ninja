@@ -5,6 +5,7 @@
 #ifndef COWBOY_VS_NINJA_SMARTTEAM_HPP
 #define COWBOY_VS_NINJA_SMARTTEAM_HPP
 #include "Team.hpp"
+
 namespace ariel {
 
     class SmartTeam :public Team{
@@ -19,7 +20,7 @@ namespace ariel {
 
         void print() override;
 
-        virtual ~SmartTeam();
+
 
     };
 } // ariel

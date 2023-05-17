@@ -15,5 +15,9 @@ namespace ariel{
 
     }
 
+    Ninja::~Ninja() {
+
+    }
+
 
 }

@@ -4,10 +4,8 @@
 
 #ifndef COWBOY_VS_NINJA_CHARACTER_HPP
 #define COWBOY_VS_NINJA_CHARACTER_HPP
-#include <string>
 #include "Point.hpp"
 
-using namespace std;
 namespace ariel {
 
     class Character {
@@ -33,7 +31,7 @@ namespace ariel {
 
         virtual string print()=0;
 
-        virtual ~Character();
+        virtual ~Character()=0;
 
 
     };

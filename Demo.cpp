@@ -10,13 +10,13 @@
 #include <sstream>
 #include <stdexcept>
 #include <cassert>
+
 using namespace std;
 
 #include "sources/Team.hpp" //no need for other includes
 
+
 using namespace ariel;
-
-
 int main() {
     Point a(32.3,44),b(1.3,3.5);
     assert(a.distance(b) == b.distance(a));

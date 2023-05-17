@@ -6,15 +6,16 @@
 #define COWBOY_VS_NINJA_TEAM_HPP
 
 #include <vector>
-
 #include "Character.hpp"
+#include "Ninja.hpp"
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
 #include "Cowboy.hpp"
-#include "Point.hpp"
+
 
 namespace ariel {
+
     class Team{
     protected:
         const int _maxTeamSize=10;
@@ -34,7 +35,7 @@ namespace ariel {
 
         int stillAlive();
 
-        virtual ~Team();
+        virtual ~Team()=default;
 
     };
 

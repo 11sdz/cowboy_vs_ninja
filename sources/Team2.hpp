@@ -6,9 +6,12 @@
 #define COWBOY_VS_NINJA_TEAM2_HPP
 
 #include "Team.hpp"
+
 namespace ariel {
 
     class Team2 :public Team{
+    protected:
+        void setLeader(Character *leader) override;
     public:
         Team2(Character *leader);
 
@@ -17,8 +20,6 @@ namespace ariel {
         void add(Character *fighter) override;
 
         void print() override;
-
-        virtual ~Team2();
 
     };
 } // ariel
