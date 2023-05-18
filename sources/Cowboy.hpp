@@ -7,20 +7,20 @@
 
 #include <ostream>
 #include "Character.hpp"
-
+#define BULLET_DAMAGE 10;
 namespace ariel {
     class Cowboy : public Character{
     private:
         int _ammo;
-
+        const int _damage=BULLET_DAMAGE;
 
     public:
 
         Cowboy(const string &name, const Point &location);
 
-        void shoot(Character *enemy);
+        void shoot(Character *enemy) const;
 
-        bool hasboolets();
+        bool hasboolets() const;
 
         void reload();
 
