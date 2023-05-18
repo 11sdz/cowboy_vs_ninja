@@ -11,11 +11,11 @@ namespace ariel {
     class Point {
     private:
         double _x, _y;
+
     public:
         Point();
 
         Point(double x, double y);
-
 
         double getX() const;
 
@@ -25,7 +25,13 @@ namespace ariel {
 
         string print();
 
-        static Point moveTowards(Point source,Point dest,double distance);
+        static Point moveTowards(Point src, Point dest, double distance);
+
+        Point operator*(double scalar);
+
+    friend Point operator+(Point lhs,Point rhs);
+
+    friend Point operator-(Point lhs,Point rhs);
 
     friend bool operator==(Point lhs,Point rhs);
 

@@ -17,23 +17,23 @@ namespace ariel {
     }
 
     void Character::hit(int damage) {
-
+        this->_hp=((_hp-damage)<=0)?0:_hp-damage;
     }
 
     bool Character::isAlive() {
-        return false;
+        return (this->_hp>0);
     }
 
     double Character::distance(Character *other) {
-        return 0;
+        return this->_location.distance(other->_location);
     }
 
     string Character::getName() {
-        return std::string();
+        return this->_name;
     }
 
     Point Character::getLocation() {
-        return Point();
+        return this->_location;
     }
 
 } // ariel
