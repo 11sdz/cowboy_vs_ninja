@@ -7,8 +7,4 @@
 namespace ariel {
     OldNinja::OldNinja( const string &name, const Point &location) : Ninja(name, 150, location,
                                                                                              8) {}
-
-    string OldNinja::print() {
-        return string("hey");
-    }
 } // ariel

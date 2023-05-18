@@ -19,7 +19,7 @@ namespace ariel {
     class Team{
     protected:
         const int _maxTeamSize=10;
-        vector<Character> _members;
+        vector<Character*> _members;
         Character *_leader;
         virtual void setLeader(Character *leader);
     public:
@@ -32,6 +32,8 @@ namespace ariel {
         virtual void attack(Team *opponent);
 
         virtual void print();
+
+        virtual Character* getTarget(Team *opponent);
 
         int stillAlive();
 

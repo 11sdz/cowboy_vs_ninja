@@ -6,11 +6,12 @@
 #define COWBOY_VS_NINJA_NINJA_HPP
 
 #include "Character.hpp"
-
+#define SLASH_DAMAGE 40;
 namespace ariel {
     class Ninja : public Character{
     protected:
-        int _speed;
+        const int _speed;
+        const int _damage=SLASH_DAMAGE;
 
     public:
         Ninja( const string &name, int hp, const Point &location, int speed);
@@ -20,6 +21,8 @@ namespace ariel {
         void slash(Character *enemy);
 
         ~Ninja() override;
+
+        string print() override;
 
     };
 }

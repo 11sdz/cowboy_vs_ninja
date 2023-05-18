@@ -10,8 +10,6 @@ namespace ariel {
     class TrainedNinja : public Ninja{
     public:
         TrainedNinja(const string &name, const Point &location);
-
-        string print() override;
     };
 }
 
