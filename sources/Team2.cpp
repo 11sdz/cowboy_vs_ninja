@@ -6,23 +6,59 @@
 
 namespace ariel {
     Team2::Team2(ariel::Character *leader) : Team(leader){
-
-    }
-
-    void Team2::attack(Team *opponent) {
-
     }
 
     void Team2::add(Character *fighter){
+        if(_members.size()<_maxTeamSize && fighter->isAlive()){
+            _members.push_back(fighter);
+        }else if(_members.size()>=_maxTeamSize){
+            throw runtime_error("add:team size is bigger than 10");
+        }
+        std::rotate(_members.rbegin(), _members.rbegin()+1,_members.rend());
+    }
+
+    void Team2::attack(Team *opponent) {
+        if(opponent== nullptr){
+            throw invalid_argument("attack:nullptr");
+        }
+        if(opponent->stillAlive()<0){
+            return;
+        }
+        this->setLeader();
+        vector<Character*>::iterator teamIterator=_members.begin();
+        Character *target= getTarget(opponent);
+        while(teamIterator!=_members.end()){
+            Character *ch=teamIterator.operator*();
+                if (typeid(*ch) == typeid(Ninja)) {
+                    Ninja *ninja = dynamic_cast<Ninja *>(teamIterator.operator*());
+                    if (ninja->distance(target) <= 1) {
+                        ninja->slash(target);
+                    } else {
+                        ninja->move(target);
+                    }
+                } else if (typeid((*ch)) == typeid(Cowboy)) {
+                    Cowboy *cowboy = dynamic_cast<Cowboy *>(teamIterator.operator*());
+                    if (cowboy->hasboolets()) {
+                        cowboy->shoot(target);
+                    } else {
+                        cowboy->reload();
+                    }
+                }
+                if(!target->isAlive()){
+                    target= getTarget(opponent);
+                }
+            teamIterator++;
+        }
 
     }
 
     void Team2::print() {
-
-    }
-
-    void Team2::setLeader(Character* leader){
-        
+        vector<Character*>::iterator teamIterator=_members.begin();
+        while (teamIterator!=_members.end()){
+            Character *ch=teamIterator.operator*();
+            cout<<ch->print()<<endl;
+            teamIterator++;
+        }
     }
 
 } // ariel

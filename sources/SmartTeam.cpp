@@ -22,9 +22,12 @@ namespace ariel {
 
     }
 
-    void SmartTeam::setLeader(Character* leader){
+    void SmartTeam::setLeader(){
 
     }
 
+    Character* SmartTeam::getTarget(ariel::Team *oppnent) {
+        return nullptr;
+    }
 
 } // ariel

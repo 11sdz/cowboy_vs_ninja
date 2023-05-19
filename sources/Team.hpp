@@ -6,6 +6,10 @@
 #define COWBOY_VS_NINJA_TEAM_HPP
 
 #include <vector>
+#include <iostream>
+#include <limits>
+#include <algorithm>
+#include <queue>
 #include "Character.hpp"
 #include "Ninja.hpp"
 #include "OldNinja.hpp"
@@ -14,14 +18,16 @@
 #include "Cowboy.hpp"
 
 
+
 namespace ariel {
 
     class Team{
     protected:
         const int _maxTeamSize=10;
+        int size;
         vector<Character*> _members;
         Character *_leader;
-        virtual void setLeader(Character *leader);
+        virtual void setLeader();
     public:
         Team(Character *leader);
 

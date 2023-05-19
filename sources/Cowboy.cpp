@@ -10,9 +10,13 @@ namespace ariel{
                                                                                   _ammo(6) {
     }
 
-    void Cowboy::shoot(Character *enemy) const {
+    void Cowboy::shoot(Character *enemy) {
+        if(enemy==this){
+            throw runtime_error("shoot:self harm");
+        }
         if(this->hasboolets()){
             enemy->hit(_damage);
+            this->_ammo=_ammo-1;
         }
     }
 
@@ -21,6 +25,9 @@ namespace ariel{
     }
 
     void Cowboy::reload() {
+        if(!this->isAlive()){
+            throw runtime_error("reload:dead cowboy");
+        }
         this->_ammo=6;
     }
 

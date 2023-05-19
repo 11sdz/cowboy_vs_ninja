@@ -17,6 +17,9 @@ namespace ariel {
     }
 
     void Character::hit(int damage) {
+        if(damage<0){
+            throw invalid_argument("hit:negative damage");
+        }
         this->_hp=((_hp-damage)<=0)?0:_hp-damage;
     }
 

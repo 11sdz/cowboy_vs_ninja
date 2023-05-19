@@ -8,10 +8,18 @@ namespace ariel{
                                                                                  _speed(speed) {}
 
     void Ninja::move(Character *enemy) {
+        if(!this->isAlive()){
+            throw runtime_error("move:dead ninja");
+        }
         this->_location=Point::moveTowards(_location,enemy->getLocation(),_speed);
     }
 
     void Ninja::slash(Character *enemy) {
+        if(enemy==this){
+            throw runtime_error("slash:self harm");
+        }else if(!this->isAlive()){
+            throw runtime_error("slash:dead ninja");
+        }
         enemy->hit(_damage);
     }
 

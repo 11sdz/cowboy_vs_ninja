@@ -10,7 +10,7 @@ namespace ariel {
 
     class SmartTeam :public Team{
     protected:
-        void setLeader(Character* leader)override;
+        void setLeader()override;
     public:
         SmartTeam(Character *leader);
 
@@ -20,7 +20,7 @@ namespace ariel {
 
         void print() override;
 
-
+        Character* getTarget(Team *oppnent)override;
 
     };
 } // ariel

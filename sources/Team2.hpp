@@ -10,8 +10,6 @@
 namespace ariel {
 
     class Team2 :public Team{
-    protected:
-        void setLeader(Character *leader) override;
     public:
         Team2(Character *leader);
 

@@ -5,7 +5,7 @@
 #ifndef COWBOY_VS_NINJA_COWBOY_HPP
 #define COWBOY_VS_NINJA_COWBOY_HPP
 
-#include <ostream>
+
 #include "Character.hpp"
 #define BULLET_DAMAGE 10;
 namespace ariel {
@@ -18,7 +18,7 @@ namespace ariel {
 
         Cowboy(const string &name, const Point &location);
 
-        void shoot(Character *enemy) const;
+        void shoot(Character *enemy) ;
 
         bool hasboolets() const;
 

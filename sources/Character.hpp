@@ -5,6 +5,7 @@
 #ifndef COWBOY_VS_NINJA_CHARACTER_HPP
 #define COWBOY_VS_NINJA_CHARACTER_HPP
 #include "Point.hpp"
+#include <ostream>
 
 namespace ariel {
 
