@@ -9,7 +9,11 @@
 namespace ariel {
 
     Team::Team(Character *leader) : _leader(leader) {
+        if(_leader->getTeam()!= nullptr){
+            throw runtime_error("captain:already assgined in a team");
+        }
         _members.push_back(leader);
+        leader->setTeam(this);
     }
 
     void Team::add(Character *fighter){
@@ -17,7 +21,10 @@ namespace ariel {
             _members.push_back(fighter);
         }else if(_members.size()>=_maxTeamSize){
             throw runtime_error("add:more then maximum size");
+        }else if(fighter->getTeam()!= nullptr){
+            throw runtime_error("add:already assgined in a team");
         }
+        fighter->setTeam(this);
         std::rotate(_members.rbegin(), _members.rbegin()+1,_members.rend());
     }
 

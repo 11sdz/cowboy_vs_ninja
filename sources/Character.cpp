@@ -5,7 +5,8 @@
 #include "Character.hpp"
 
 namespace ariel {
-    Character::Character(const string &name, int hp, const Point &location) : _name(name), _hp(hp), _location(location)
+    Character::Character(const string &name, int hp, const Point &location) : _name(name), _hp(hp), _location(location) ,_team(
+            nullptr)
                                                                                {}
 
     int Character::getHp() const {
@@ -37,6 +38,14 @@ namespace ariel {
 
     Point Character::getLocation() {
         return this->_location;
+    }
+
+    Team *Character::getTeam() const {
+        return _team;
+    }
+
+    void Character::setTeam(Team *team) {
+        _team = team;
     }
 
 } // ariel

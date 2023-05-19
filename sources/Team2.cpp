@@ -8,15 +8,6 @@ namespace ariel {
     Team2::Team2(ariel::Character *leader) : Team(leader){
     }
 
-    void Team2::add(Character *fighter){
-        if(_members.size()<_maxTeamSize && fighter->isAlive()){
-            _members.push_back(fighter);
-        }else if(_members.size()>=_maxTeamSize){
-            throw runtime_error("add:team size is bigger than 10");
-        }
-        std::rotate(_members.rbegin(), _members.rbegin()+1,_members.rend());
-    }
-
     void Team2::attack(Team *opponent) {
         if(opponent== nullptr){
             throw invalid_argument("attack:nullptr");
