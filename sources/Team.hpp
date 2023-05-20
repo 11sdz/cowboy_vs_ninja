@@ -29,9 +29,9 @@ namespace ariel {
         Character *_leader;
         virtual void setLeader();
     public:
-        Team(Character *leader);
+        explicit Team(Character *leader);
 
-        Character *getLeader() const;
+        [[nodiscard]] Character *getLeader() const;
 
         virtual void add(Character *fighter);
 
@@ -43,7 +43,11 @@ namespace ariel {
 
         int stillAlive();
 
-        virtual ~Team()=default;
+        virtual ~Team(){
+            for (auto & _member : _members) {
+                delete _member;
+            }
+        }
 
     };
 

@@ -10,20 +10,19 @@ namespace ariel {
 
     Team::Team(Character *leader) : _leader(leader) {
         if(_leader->getTeam()!= nullptr){
-            throw runtime_error("captain:already assgined in a team");
+            throw runtime_error("captain:already assigned in a team");
         }
         _members.push_back(leader);
         leader->setTeam(this);
     }
 
     void Team::add(Character *fighter){
-        if(_members.size()<_maxTeamSize && fighter->isAlive()){
-            _members.push_back(fighter);
-        }else if(_members.size()>=_maxTeamSize){
+        if(_members.size()>=_maxTeamSize){
             throw runtime_error("add:more then maximum size");
         }else if(fighter->getTeam()!= nullptr){
-            throw runtime_error("add:already assgined in a team");
+            throw runtime_error("add:already assigned in a team");
         }
+        _members.push_back(fighter);
         fighter->setTeam(this);
         std::rotate(_members.rbegin(), _members.rbegin()+1,_members.rend());
     }
@@ -51,9 +50,11 @@ namespace ariel {
             Character *c = enemyIterator.operator*();
             if(c->isAlive()) {
                 double d = c->getLocation().distance(_leader->getLocation());
-                minDistance = std::min(minDistance, d);
-                if (minDistance == d) {
-                    target = c;
+                if(d!=minDistance) {
+                    minDistance = std::min(minDistance, d);
+                    if (minDistance == d) {
+                        target = c;
+                    }
                 }
             }
             enemyIterator++;
@@ -65,8 +66,8 @@ namespace ariel {
         if(opponent== nullptr){
             throw invalid_argument("attack:nullptr");
         }
-        if(opponent->stillAlive()<0){
-            return;
+        if(opponent->stillAlive()<=0){
+            throw runtime_error("other team is dead");
         }
         this->setLeader();
         queue<Character*> cowboys;
@@ -75,7 +76,7 @@ namespace ariel {
         while(teamIterator!=_members.end()){
             auto *ch=teamIterator.operator*();
             if(ch->isAlive()) {
-                if (typeid(*ch) == typeid(Ninja)) {
+                if (dynamic_cast<Ninja*>(ch)!= nullptr) {
                     ninjas.push(ch);
                 } else if (typeid((*ch)) == typeid(Cowboy)) {
                     cowboys.push(ch);
@@ -84,29 +85,29 @@ namespace ariel {
             teamIterator++;
         }
         Character *target= getTarget(opponent);
-        while(!cowboys.empty()){
+        while(!cowboys.empty() && opponent->stillAlive()){
             Cowboy *cowboy=dynamic_cast<Cowboy*>(cowboys.front());
             if(cowboy->hasboolets()) {
                 cowboy->shoot(target);
             }else{
                 cowboy->reload();
             }
-            cowboys.pop();
             if(!target->isAlive()){
                 target= getTarget(opponent);
             }
+            cowboys.pop();
         }
-        while(!ninjas.empty()){
+        while(!ninjas.empty() && opponent->stillAlive()){
             Ninja *ninja=dynamic_cast<Ninja*>(ninjas.front());
-            if(ninja->distance(target)<=1){
-                ninja->slash(target);
-            }else{
+            if(ninja->distance(target)>1){
                 ninja->move(target);
+            }else{
+                ninja->slash(target);
+            }
+            if(!target->isAlive()){
+                target= getTarget(opponent);
             }
             ninjas.pop();
-            if(!target->isAlive()){
-                target= getTarget(opponent);
-            }
         }
     }
 
@@ -116,7 +117,7 @@ namespace ariel {
         vector<Character*>::iterator teamIterator=_members.begin();
         while(teamIterator!=_members.end()){
             auto *ch=teamIterator.operator*();
-            if (typeid(*ch) == typeid(Ninja)) {
+            if (dynamic_cast<Ninja*>(ch)!= nullptr) {
                 ninjas.push(ch);
             } else if (typeid((*ch)) == typeid(Cowboy)) {
                 cowboys.push(ch);
@@ -151,9 +152,11 @@ namespace ariel {
             Character *c = it.operator*();
             if(c->isAlive()) {
                 double d = c->getLocation().distance(_leader->getLocation());
-                minDistance = std::min(minDistance, d);
-                if (minDistance == d) {
-                    leader = c;
+                if(d!=minDistance) {
+                    minDistance = std::min(minDistance, d);
+                    if (minDistance == d) {
+                        leader = c;
+                    }
                 }
             }
             it++;

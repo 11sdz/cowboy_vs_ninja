@@ -20,7 +20,7 @@ namespace ariel {
 
         void print() override;
 
-        Character* getTarget(Team *oppnent)override;
+        Character* getTarget(Team *opponent)override;
 
     };
 } // ariel

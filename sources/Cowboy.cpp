@@ -13,6 +13,8 @@ namespace ariel{
     void Cowboy::shoot(Character *enemy) {
         if(enemy==this){
             throw runtime_error("shoot:self harm");
+        }else if((!this->isAlive()) || (!enemy->isAlive())){
+            throw runtime_error("shoot:dead enemy or dead cowboy");
         }
         if(this->hasboolets()){
             enemy->hit(_damage);

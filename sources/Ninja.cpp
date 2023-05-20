@@ -17,8 +17,10 @@ namespace ariel{
     void Ninja::slash(Character *enemy) {
         if(enemy==this){
             throw runtime_error("slash:self harm");
-        }else if(!this->isAlive()){
+        }else if((!this->isAlive()) || (!enemy->isAlive())){
             throw runtime_error("slash:dead ninja");
+        }if(this->distance(enemy)>1){
+            return;
         }
         enemy->hit(_damage);
     }
@@ -32,10 +34,5 @@ namespace ariel{
         }
         return str;
     }
-
-    Ninja::~Ninja() {
-
-    }
-
 
 }

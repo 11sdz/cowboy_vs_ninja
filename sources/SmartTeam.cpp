@@ -26,7 +26,7 @@ namespace ariel {
 
     }
 
-    Character* SmartTeam::getTarget(ariel::Team *oppnent) {
+    Character* SmartTeam::getTarget(ariel::Team *opponent) {
         return nullptr;
     }
 

@@ -3,7 +3,7 @@
 //
 
 #include "Point.hpp"
-#include <math.h>
+#include <cmath>
 #include <iostream>
 
 using namespace std;
@@ -27,14 +27,14 @@ namespace ariel{
     }
 
 
-    double Point::distance(Point other) {
+    double Point::distance(Point other) const {
         double diffX=(this->_x-other._x);
         double diffY=(this->_y-other._y);
-        double result= std::sqrt(diffX*diffX+diffY*diffY);
+        double result= std::sqrt((diffX*diffX)+(diffY*diffY));
         return result;
     }
 
-    string Point::print() {
+    string Point::print() const {
        return string("("+ to_string(this->_x)+","+ to_string(this->_y)+")");
     }
 
@@ -48,7 +48,7 @@ namespace ariel{
         if(a2b <= distance){
             return dest;
         }
-        Point res(0,0);
+        Point res;
         res=(dest-src);
 
         double t= distance / a2b;
@@ -58,16 +58,16 @@ namespace ariel{
     }
 
 
-    Point Point::operator*(double scalar) {
-        return Point(this->_x*scalar,this->_y*scalar);
+    Point Point::operator*(double scalar) const {
+        return {this->_x*scalar,this->_y*scalar};
     }
 
     Point operator+(Point lhs, Point rhs) {
-        return Point(lhs._x+rhs._x,lhs._y+rhs._y);
+        return {lhs._x+rhs._x,lhs._y+rhs._y};
     }
 
     Point operator-(Point lhs, Point rhs) {
-        return Point(lhs._x-rhs._x,lhs._y-rhs._y);
+        return {lhs._x-rhs._x,lhs._y-rhs._y};
     }
 
     bool operator==(Point lhs, Point rhs) {

@@ -3,9 +3,10 @@
 //
 
 #include "Character.hpp"
-
+#include "iostream"
 namespace ariel {
-    Character::Character(const string &name, int hp, const Point &location) : _name(name), _hp(hp), _location(location) ,_team(
+
+    Character::Character(const string &name, int hitPoints, const Point &location) : _name(name), _hp(hitPoints), _location(location) , _team(
             nullptr)
                                                                                {}
 
@@ -13,9 +14,7 @@ namespace ariel {
         return _hp;
     }
 
-    Character::~Character() {
-
-    }
+    Character::~Character() = default;
 
     void Character::hit(int damage) {
         if(damage<0){
@@ -24,12 +23,15 @@ namespace ariel {
         this->_hp=((_hp-damage)<=0)?0:_hp-damage;
     }
 
-    bool Character::isAlive() {
+    bool Character::isAlive() const{
         return (this->_hp>0);
     }
 
-    double Character::distance(Character *other) {
-        return this->_location.distance(other->_location);
+    double Character::distance(Character *other){
+        if(this->_location==other->_location){
+            return 0;
+        }
+        return this->_location.Point::distance(other->_location);
     }
 
     string Character::getName() {

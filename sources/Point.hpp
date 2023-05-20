@@ -17,17 +17,17 @@ namespace ariel {
 
         Point(double x, double y);
 
-        double getX() const;
+        [[nodiscard]] double getX() const;
 
-        double getY() const;
+        [[nodiscard]] double getY() const;
 
-        double distance(Point other);
+        [[nodiscard]] double distance(Point other) const;
 
-        string print();
+        [[nodiscard]] string print() const;
 
         static Point moveTowards(Point src, Point dest, double distance);
 
-        Point operator*(double scalar);
+        Point operator*(double scalar) const;
 
     friend Point operator+(Point lhs,Point rhs);
 

@@ -21,13 +21,13 @@ namespace ariel {
 
     public:
 
-        Character( const string &name, int hp, const Point &location);
+        Character(const string &name, int hitPoints, const Point &location);
 
         [[nodiscard]] int getHp() const;
 
         void hit(int damage);
 
-        bool isAlive();
+        [[nodiscard]] bool isAlive() const;
 
         double distance(Character *other);
 
@@ -37,7 +37,7 @@ namespace ariel {
 
         virtual string print()=0;
 
-        Team *getTeam() const;
+        [[nodiscard]] Team *getTeam() const;
 
         void setTeam(Team *team);
 

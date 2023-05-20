@@ -13,14 +13,15 @@ namespace ariel {
             throw invalid_argument("attack:nullptr");
         }
         if(opponent->stillAlive()<0){
-            return;
+            throw runtime_error("other team is dead");
         }
         this->setLeader();
         vector<Character*>::iterator teamIterator=_members.begin();
         Character *target= getTarget(opponent);
-        while(teamIterator!=_members.end()){
+        while(teamIterator!=_members.end() && opponent->stillAlive()){
             Character *ch=teamIterator.operator*();
-                if (typeid(*ch) == typeid(Ninja)) {
+            if(ch->isAlive()) {
+                if (dynamic_cast<Ninja *>(ch) != nullptr) {
                     Ninja *ninja = dynamic_cast<Ninja *>(teamIterator.operator*());
                     if (ninja->distance(target) <= 1) {
                         ninja->slash(target);
@@ -35,9 +36,10 @@ namespace ariel {
                         cowboy->reload();
                     }
                 }
-                if(!target->isAlive()){
-                    target= getTarget(opponent);
+                if (!target->isAlive()) {
+                    target = getTarget(opponent);
                 }
+            }
             teamIterator++;
         }
 

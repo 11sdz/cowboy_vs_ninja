@@ -20,7 +20,7 @@ namespace ariel {
 
         void slash(Character *enemy);
 
-        ~Ninja() override;
+        ~Ninja()=default;
 
         string print() override;
 
