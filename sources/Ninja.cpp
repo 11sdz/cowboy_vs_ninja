@@ -4,14 +4,42 @@
 
 #include "Ninja.hpp"
 namespace ariel{
-    Ninja::Ninja( const string &name, int hp, const Point &location, int speed) : Character(name, hp , location),
-                                                                                 _speed(speed) {}
+    Ninja::Ninja(const string &name, int _hp, const Point &location, int speed) : Character(name, _hp , location),
+                                                                                  _speed(speed) {}
+
+    Ninja::Ninja() {
+        this->_speed=0;
+        this->_damage=40;
+    }
+
+    Ninja::Ninja(const Ninja& other){
+        this->_speed=other._speed;
+        this->_damage=other._damage;
+    }
+
+    Ninja::Ninja(Ninja&& other) noexcept{
+        this->_speed=other._speed;
+        this->_damage=other._damage;
+    }
+
+    Ninja& Ninja::operator=(const Ninja& other) {
+        this->_speed=other._speed;
+        this->_damage=other._damage;
+        return *this;
+    }
+
+    Ninja& Ninja::operator=(Ninja&& other) noexcept{
+        this->_speed=other._speed;
+        this->_damage=other._damage;
+        return *this;
+    }
 
     void Ninja::move(Character *enemy) {
         if(!this->isAlive()){
             throw runtime_error("move:dead ninja");
         }
-        this->_location=Point::moveTowards(_location,enemy->getLocation(),_speed);
+        Point location=Point::moveTowards(this->getLocation(),enemy->getLocation(),_speed);
+        this->setLocation(location);
     }
 
     void Ninja::slash(Character *enemy) {
@@ -28,9 +56,9 @@ namespace ariel{
     string Ninja::print() {
         string str("N{");
         if(isAlive()){
-            str=str+this->getName()+",\"HP\":"+ to_string(_hp)+","+",\"location\":"+_location.print()+",\"Speed\":"+to_string(this->_speed)+"}";
+            str=str+this->getName()+",\"HP\":"+ to_string(getHp())+",\"location\":"+getLocation().print()+",\"Speed\":"+to_string(this->_speed)+"}";
         }else{
-            str=str+this->getName()+",\"location\":"+_location.print()+",\"Speed\":"+to_string(this->_speed)+"}";
+            str=str+this->getName()+",\"location\":"+getLocation().print()+",\"Speed\":"+to_string(this->_speed)+"}";
         }
         return str;
     }

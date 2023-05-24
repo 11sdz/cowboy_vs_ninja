@@ -10,11 +10,50 @@ namespace ariel {
             nullptr)
                                                                                {}
 
+    Character::Character(){
+        this->_location= Point(0,0);
+        this->_hp=0;
+        this->_team=NULL;
+        this->_name="";
+    }
+
+    Character::Character(const Character &other) {
+        this->_location=other._location;
+        this->_hp=other._hp;
+        this->_team=other._team;
+        this->_name=other._name;
+    }
+
+    Character &Character::operator=(const Character &other) {
+        this->_location=other._location;
+        this->_hp=other._hp;
+        this->_team=other._team;
+        this->_name=other._name;
+        return *this;
+    }
+
+    Character::Character(Character &&other) noexcept {
+        this->_location=other._location;
+        this->_hp=other._hp;
+        this->_team=other._team;
+        this->_name=other._name;
+    }
+
+    Character& Character::operator=(Character&& other) noexcept{
+        this->_location=other._location;
+        this->_hp=other._hp;
+        this->_team=other._team;
+        this->_name=other._name;
+        return *this;
+    }
+
     int Character::getHp() const {
         return _hp;
     }
 
     Character::~Character() = default;
+
+
 
     void Character::hit(int damage) {
         if(damage<0){
@@ -38,8 +77,12 @@ namespace ariel {
         return this->_name;
     }
 
-    Point Character::getLocation() {
+    Point Character::getLocation() const{
         return this->_location;
+    }
+
+    void Character::setLocation(const Point &location) {
+        _location = location;
     }
 
     Team *Character::getTeam() const {
@@ -49,5 +92,4 @@ namespace ariel {
     void Character::setTeam(Team *team) {
         _team = team;
     }
-
 } // ariel

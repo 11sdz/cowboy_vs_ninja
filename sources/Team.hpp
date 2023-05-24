@@ -22,16 +22,27 @@
 namespace ariel {
 
     class Team{
-    protected:
+    private:
         const int _maxTeamSize=10;
-        int size;
         vector<Character*> _members;
         Character *_leader;
-        virtual void setLeader();
     public:
+
         explicit Team(Character *leader);
 
+        Team();
+
+        Team(const Team& other);
+
+        Team& operator=(Team other);
+
+        Team& operator=(Team&& other) noexcept;
+
+        Team(Team &&other) noexcept;
+
         [[nodiscard]] Character *getLeader() const;
+
+        virtual void setLeader();
 
         virtual void add(Character *fighter);
 
@@ -42,6 +53,10 @@ namespace ariel {
         virtual Character* getTarget(Team *opponent);
 
         int stillAlive();
+
+        vector<Character *> &getMembers(){
+            return _members;
+        }
 
         virtual ~Team(){
             for (auto & _member : _members) {

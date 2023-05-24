@@ -36,9 +36,9 @@ namespace ariel{
     string Cowboy::print() {
         string str("C{");
         if(isAlive()){
-            str=str+this->getName()+",\"HP\":"+ to_string(_hp)+","+",\"location\":"+_location.print()+",\"Bullets\":"+to_string(this->_ammo)+"}";
+            str=str+this->getName()+",\"HP\":"+ to_string(getHp())+",\"location\":"+getLocation().print()+",\"Bullets\":"+to_string(this->_ammo)+"}";
         }else{
-            str=str+this->getName()+",\"location\":"+_location.print()+",\"Bullets\":"+to_string(this->_ammo)+"}";
+            str=str+this->getName()+",\"location\":"+getLocation().print()+",\"Bullets\":"+to_string(this->_ammo)+"}";
         }
         return str;
     }

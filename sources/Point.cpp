@@ -14,7 +14,7 @@ namespace ariel{
         this->_y=0;
     }
 
-    Point::Point(double x, double y) : _x(x), _y(y) {
+    Point::Point(double _px, double _py) : _x(_px), _y(_py) {
 
     }
 

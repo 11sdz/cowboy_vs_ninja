@@ -16,9 +16,9 @@ namespace ariel {
             throw runtime_error("other team is dead");
         }
         this->setLeader();
-        vector<Character*>::iterator teamIterator=_members.begin();
+        vector<Character*>::iterator teamIterator=getMembers().begin();
         Character *target= getTarget(opponent);
-        while(teamIterator!=_members.end() && opponent->stillAlive()){
+        while(teamIterator!=getMembers().end() && opponent->stillAlive()){
             Character *ch=teamIterator.operator*();
             if(ch->isAlive()) {
                 if (dynamic_cast<Ninja *>(ch) != nullptr) {
@@ -46,8 +46,8 @@ namespace ariel {
     }
 
     void Team2::print() {
-        vector<Character*>::iterator teamIterator=_members.begin();
-        while (teamIterator!=_members.end()){
+        vector<Character*>::iterator teamIterator=getMembers().begin();
+        while (teamIterator!=getMembers().end()){
             Character *ch=teamIterator.operator*();
             cout<<ch->print()<<endl;
             teamIterator++;

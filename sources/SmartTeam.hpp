@@ -9,19 +9,14 @@
 namespace ariel {
 
     class SmartTeam :public Team{
-    protected:
-        void setLeader()override;
     public:
         SmartTeam(Character *leader);
-
-        void add(Character *fighter) override;
 
         void attack(Team *opponent) override;
 
         void print() override;
 
-        Character* getTarget(Team *opponent)override;
-
+        Character *getTarget(Team *opponent) override;
     };
 } // ariel
 

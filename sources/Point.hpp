@@ -15,7 +15,7 @@ namespace ariel {
     public:
         Point();
 
-        Point(double x, double y);
+        Point(double _px, double _py);
 
         [[nodiscard]] double getX() const;
 

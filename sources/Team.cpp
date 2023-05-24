@@ -16,6 +16,32 @@ namespace ariel {
         leader->setTeam(this);
     }
 
+    Team::Team(){
+        this->_leader=NULL;
+    }
+
+    Team::Team(const Team& other){
+        this->_members=other._members;
+        this->_leader=other._leader;
+    }
+
+    Team& Team::operator=(Team other){
+        this->_members=other._members;
+        this->_leader=other._leader;
+        return *this;
+    }
+
+    Team::Team(Team &&other) noexcept{
+        this->_members=other._members;
+        this->_leader=other._leader;
+    }
+
+    Team& Team::operator=(Team&& other) noexcept{
+        this->_members=other._members;
+        this->_leader=other._leader;
+        return *this;
+    }
+
     void Team::add(Character *fighter){
         if(_members.size()>=_maxTeamSize){
             throw runtime_error("add:more then maximum size");

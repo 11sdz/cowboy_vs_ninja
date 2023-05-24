@@ -14,14 +14,25 @@ namespace ariel {
     class Character {
     private:
         Team *_team;
-    protected:
         int _hp;
         Point _location;
         string _name;
 
     public:
 
-        Character(const string &name, int hitPoints, const Point &location);
+        Character(const string &name, int _hp, const Point &location);
+
+        Character();
+
+        Character(const Character& other);
+
+        Character& operator=(const Character& other);
+
+        Character(Character&& other) noexcept;
+
+        Character& operator=(Character&& other) noexcept;
+
+        [[nodiscard]] Point getLocation() const;
 
         [[nodiscard]] int getHp() const;
 
@@ -33,8 +44,6 @@ namespace ariel {
 
         string getName();
 
-        Point getLocation();
-
         virtual string print()=0;
 
         [[nodiscard]] Team *getTeam() const;
@@ -42,6 +51,8 @@ namespace ariel {
         void setTeam(Team *team);
 
         virtual ~Character()=0;
+
+        void setLocation(const Point &location);
 
 
     };

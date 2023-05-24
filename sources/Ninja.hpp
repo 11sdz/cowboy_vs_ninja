@@ -9,18 +9,26 @@
 #define SLASH_DAMAGE 40;
 namespace ariel {
     class Ninja : public Character{
-    protected:
-        const int _speed;
-        const int _damage=SLASH_DAMAGE;
+    private:
+        int _speed;
+        int _damage=SLASH_DAMAGE;
 
     public:
-        Ninja( const string &name, int hp, const Point &location, int speed);
+        Ninja(const string &name, int _hp, const Point &location, int speed);
+
+        Ninja();
+
+        Ninja(const Ninja& other);
+
+        Ninja(Ninja&& other) noexcept;
+
+        Ninja& operator=(const Ninja& other);
+
+        Ninja& operator=(Ninja&& other) noexcept;
 
         void move(Character *enemy);
 
         void slash(Character *enemy);
-
-        ~Ninja()=default;
 
         string print() override;
 
